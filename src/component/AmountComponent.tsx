@@ -1,15 +1,18 @@
 import React from "react";
 
-export type OnAmountChange = (currency: string | undefined, amount: number | undefined) => void
 export type AmountProps = {
-    onChange: OnAmountChange,
+    onChange: (currency: string | undefined, amount: number | undefined) => void,
     currency?: string,
     amount?: number
 };
 
 export const AmountComponent: React.FC<AmountProps> = ({onChange, currency, amount}) => {
     const handleCurrencyChange = (c: string) => onChange(c, amount);
-    const handleAmountChange = (a: string) => onChange(currency, parseFloat(a));
+    const handleAmountChange = (amtStr: string) => {
+        const amt = parseFloat(amtStr);
+        if (!isNaN(amt))
+            onChange(currency, amt);
+    };
 
     return (
         <>
