@@ -1,26 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import './App.css';
+import {reducer} from "./reducer";
+import Form from "./container/FormContainer";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const store = createStore(reducer);
+
+const App = () => (
+    <Provider store={store}>
+        <Form title={"Donation Form"}/>
+    </Provider>
+);
 
 export default App;

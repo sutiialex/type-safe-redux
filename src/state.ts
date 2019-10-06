@@ -1,0 +1,1 @@
+export type FormState = { name?: string, amount?: number, currency?: string, submitted: boolean }
